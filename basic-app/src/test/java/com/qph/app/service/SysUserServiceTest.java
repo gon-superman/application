@@ -70,8 +70,10 @@ public class SysUserServiceTest {
 	@Test
 	public void getGetData(){
 		
-//		SysUser user3 = userRepository.findByUsername("admin");
-//		SysUser user4 = userRepository.findByUsername("admin");
+		SysUser user3 = userRepository.findByUsername("admin");
+		SysUser user4 = userRepository.findByUsername("admin");
 		
+		System.out.println(user3.getRoleList().size());
+		System.out.println(user4.getRoleList().size());
 	}
 }

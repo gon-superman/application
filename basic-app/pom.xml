@@ -27,10 +27,10 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-cache</artifactId> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
 
 		<!-- JPA -->
 		<dependency>
@@ -59,13 +59,31 @@
 <!-- 			<artifactId>ehcache</artifactId> -->
 <!-- 		</dependency> -->
 
-		<!-- 开发者工具，用于支持热部署 -->
+		<!-- redis缓存 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
+			<artifactId>spring-boot-starter-redis</artifactId>
 		</dependency>
 		
+		<!-- 会话共享 -->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
+
+		<!-- 监控端点 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- 开发者工具，用于支持热部署 -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.boot</groupId> -->
+<!-- 			<artifactId>spring-boot-devtools</artifactId> -->
+<!-- 			<optional>true</optional> -->
+<!-- 		</dependency> -->
+
 		<!-- 单元测试 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

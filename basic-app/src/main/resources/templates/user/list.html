@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
 			xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+			xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 			>
     <head>
         <title>Spring boot入门</title>
@@ -11,5 +12,10 @@
             <input type="submit" value="注销"/>
         </form>
         
+        
+        <form th:action="@{/user/add}" method="post">
+            用户名：<input type="text" value=""/>
+            邮箱：<input type="text" value=""/>
+        </form>
     </body>
 </html>

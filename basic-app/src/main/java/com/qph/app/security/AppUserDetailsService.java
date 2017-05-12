@@ -39,10 +39,12 @@ public class AppUserDetailsService implements UserDetailsService{
 		 Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 		 Set<SysRole> roles = sysUser.getRoleList();
 		 
-		 for (SysRole role : roles){
-			 authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getId()));
+		 if (roles != null && roles.size() > 0){
+			 for (SysRole role : roles){
+				 authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getId()));
+			 }
 		 }
-		 
+		
 		 User user = new User(username, sysUser.getPassword(), sysUser.isEnabled(), true, true, true, authorities);
 		return user;
 	}
