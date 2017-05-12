@@ -11,7 +11,6 @@ public class AppPermissionEvaluator implements PermissionEvaluator{
 
 	public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
 		
-		authentication.getAuthorities();
 		
 		return true;
 	}

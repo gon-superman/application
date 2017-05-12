@@ -32,8 +32,9 @@ public class SysUserServiceTest {
 		
 		for (int i = 0 , j = 9 ; i < j ; i++){
 			SysUser user = new SysUser();
-			user.setUsername("zhangsan"+i);
-			user.setPassword(encoder.encode("123123."));
+			user.setUsername("user"+i);
+			user.setPassword(encoder.encode("0"));
+			user.setEnabled(true);
 			userRepository.save(user);
 			
 			SysRole role = new SysRole();

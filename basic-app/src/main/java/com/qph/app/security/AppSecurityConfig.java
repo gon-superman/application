@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity // 禁用Boot的默认Security配置
@@ -20,29 +19,21 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(detailsService).passwordEncoder(new BCryptPasswordEncoder());
+		 auth.userDetailsService(detailsService);
+//		 .passwordEncoder(new BCryptPasswordEncoder());
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		        .antMatchers("/", "/public/**").permitAll()
-		        .antMatchers("/admin/**").hasAuthority("ADMIN")
-		        .anyRequest().fullyAuthenticated()
-		        .and()
-		        .formLogin()
-		        .loginPage("/login")
-		        .failureUrl("/login?error")
-		        .usernameParameter("username")
-		        .permitAll()
-		        .and()
-		        .logout()
-		        .logoutUrl("/logout")
-		        .deleteCookies("remember-me")
-		        .logoutSuccessUrl("/")
-		        .permitAll()
-		        .and()
-		        .rememberMe();
+		http.authorizeRequests().antMatchers("/", "/public/**").permitAll()
+				.antMatchers("/admin/**").hasAuthority("ADMIN")
+				.anyRequest().fullyAuthenticated()
+				.and()
+				.formLogin().loginPage("/login").permitAll()
+				.and()
+				.logout().logoutUrl("/logout").deleteCookies("remember-me").logoutSuccessUrl("/").permitAll()
+				.and()
+				.rememberMe();
 	}
 
 	@Override
@@ -50,5 +41,6 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 		// 配置所有/resources/*开头请求都放过
 		web.ignoring().antMatchers("/resources/**");
 	}
+
 
 }

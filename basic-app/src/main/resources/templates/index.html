@@ -7,5 +7,25 @@
     </head>
     <body>
         <h1>欢迎使用Spring boot!</h1>
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        
+        <a th:href="@{/user/list}">用户管理</a>
+        
+        
     </body>
 </html>
+
+<!-- <!DOCTYPE html> -->
+<!-- <html xmlns:th="http://www.thymeleaf.org" -->
+<!--       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"> -->
+<!-- <head> -->
+<!--     <title>Hello World!</title> -->
+<!-- </head> -->
+<!-- <body> -->
+<!--     <h1 th:inline="text">Hello World</h1> -->
+<!--     <form th:action="@{/logout}" action="./logout" method="post"> -->
+<!--         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> -->
+<!--         <input type="submit" value="Sign Out"/> -->
+<!--     </form> -->
+<!-- </body> -->
+<!-- </html> -->
