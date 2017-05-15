@@ -15,12 +15,12 @@ import com.qph.app.domain.pojo.SysUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class SysUserService {
+public class SysUserServiceTest {
 
 	@Autowired
 	private UserService userService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(SysUserService.class);
+	private static final Logger logger = LoggerFactory.getLogger(SysUserServiceTest.class);
 	
 	@Test
 	public void testGetData(){
