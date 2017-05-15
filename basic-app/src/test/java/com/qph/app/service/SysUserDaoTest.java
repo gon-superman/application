@@ -1,13 +1,18 @@
 package com.qph.app.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.qph.app.domain.RoleRepository;
@@ -17,7 +22,7 @@ import com.qph.app.domain.pojo.SysUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class SysUserServiceTest {
+public class SysUserDaoTest {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -26,20 +31,22 @@ public class SysUserServiceTest {
 	private RoleRepository roleRepository;
 	
 	
+	private static final Logger logger = LoggerFactory.getLogger(SysUserDaoTest.class);
+	
+	
 	@Test
 	public void testSave(){
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
-		for (int i = 0 , j = 9 ; i < j ; i++){
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		for (int i = 0 , j = 30 ; i < j ; i++){
 			SysUser user = new SysUser();
-			user.setUsername("user"+i);
-			user.setPassword(encoder.encode("0"));
+			user.setUsername("han"+i);
+			user.setPassword("0");
 			user.setEnabled(true);
 			userRepository.save(user);
 			
-			SysRole role = new SysRole();
-			role.setName("role"+i);
-			roleRepository.save(role);
+//			SysRole role = new SysRole();
+//			role.setName("role"+i);
+//			roleRepository.save(role);
 		}
 	}
 	
@@ -68,12 +75,22 @@ public class SysUserServiceTest {
 	}
 	
 	@Test
-	public void getGetData(){
+	public void testGetData(){
 		
 		SysUser user3 = userRepository.findByUsername("admin");
-		SysUser user4 = userRepository.findByUsername("admin");
+		logger.info("user3 roles==>"+user3.getRoleList().size());
 		
-		System.out.println(user3.getRoleList().size());
-		System.out.println(user4.getRoleList().size());
+		SysUser user4 = userRepository.findByUsername("admin");
+		logger.info("user4 roles==>"+user4.getRoleList().size());
+		
+		List<SysUser> users = userRepository.findAll();
+		logger.info("users==>"+users.size());
+		
+		Pageable page = new PageRequest(0, 15);
+		Page<SysUser> page1 = userRepository.findAll(page);
+		logger.info("page1==>"+page1.getContent().size());
+		logger.info("page1 hasNext==>"+page1.hasNext());
+		logger.info("page1 getPageNumber==>"+page1.nextPageable().getPageNumber());
 	}
+	
 }
