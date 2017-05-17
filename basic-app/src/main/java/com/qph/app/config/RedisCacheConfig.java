@@ -55,10 +55,10 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
         return redisTemplate;
     }
 
-    /**
-     * 自定义key.
+   /**
+    * 自定义key.
      * 此方法将会根据完全限定类名+方法名+所有参数的值生成唯一的一个key,即使@Cacheable中的value属性一样，key也会不一样。
-     */
+    */
     @Bean
     @Override
     public KeyGenerator keyGenerator() {
