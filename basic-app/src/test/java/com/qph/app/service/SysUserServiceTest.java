@@ -39,4 +39,33 @@ public class SysUserServiceTest {
 		logger.info("role==>"+role.getName());
 	}
 	
+	@Test
+	public void testDelete(){
+		userService.deleteAll();
+		roleService.deleteAll();
+	}
+	
+	@Test
+	public void testUseCache(){
+		Long id = Long.valueOf(121);
+		SysUser user = userService.getOne(id);
+		System.out.println("test===>"+user.getUsername());
+		
+		SysUser user0 = userService.getOne(id);
+		System.out.println("test0===>"+user0.getUsername());
+		
+		SysUser sysUser = new SysUser();
+		sysUser.setId(id);
+		sysUser.setUsername("cacheChange");
+		user.setPassword("0");
+		userService.save(sysUser);
+		
+		SysUser user1 = userService.getOne(id);
+		System.out.println("test1===>"+user1.getUsername());
+		
+//		userService.delete(Long.valueOf(91));
+//		SysUser user2 = userService.getOne(id);
+//		System.out.println("test3===>"+user2==null);
+	}
+	
 }

@@ -44,9 +44,9 @@ public class SysUserDaoTest {
 			user.setEnabled(true);
 			userRepository.save(user);
 			
-//			SysRole role = new SysRole();
-//			role.setName("role"+i);
-//			roleRepository.save(role);
+			SysRole role = new SysRole();
+			role.setName("role"+i);
+			roleRepository.save(role);
 		}
 	}
 	

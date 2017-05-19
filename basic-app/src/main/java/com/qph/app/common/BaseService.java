@@ -4,12 +4,20 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+/**
+ * 
+ * <p>
+ *   <h3>基础框架<h3>
+ *   说明：CRUD基本操作
+ * <p>
+ * @author <a href="mailto:waterlord@vip.qq.com">qupenghui</a>
+ * @version 2017年5月19日下午1:54:23
+ */
 public abstract class BaseService<T, ID extends Serializable , JPA extends JpaRepository<T, ID>>  {
 
 	@Autowired
@@ -31,32 +39,41 @@ public abstract class BaseService<T, ID extends Serializable , JPA extends JpaRe
 		return repository.findAll(ids);
 	}
 
-	public <S extends T> List<S> save(Iterable<S> entities) {
+	public List<T> save(Iterable<T> entities) {
 		return repository.save(entities);
 	}
 
-	public <S extends T> S saveAndFlush(S entity) {
-		return repository.saveAndFlush(entity);
-	}
-
-	public void deleteInBatch(Iterable<T> entities) {
-		repository.deleteInBatch(entities);
-	}
-
-	public void deleteAllInBatch() {
-		repository.deleteAllInBatch();
+	public  T save(T entity) {
+		return repository.save(entity);
 	}
 
 	public T getOne(ID id) {
 		return repository.getOne(id);
 	}
-
-	public <S extends T> List<S> findAll(Example<S> example) {
-		return repository.findAll(example) ;
+	
+	public boolean exists(ID id) {
+		return repository.exists(id);
 	}
 
-	public <S extends T> List<S> findAll(Example<S> example, Sort sort) {
-		return repository.findAll(example, sort);
+	public long count() {
+		return repository.count();
 	}
+
+	public void delete(ID id) {
+		repository.delete(id);
+	}
+
+	public void delete(T entity) {
+		repository.delete(entity);
+	}
+
+	public void delete(Iterable<T> entities) {
+		repository.deleteInBatch(entities);
+	}
+
+	public void deleteAll() {
+		repository.deleteAllInBatch();
+	}
+
 
 }

@@ -5,7 +5,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -30,7 +29,7 @@ public class SysUser implements Serializable{
 	
 	private boolean enabled;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany
 	@JoinTable(name="sys_user_role", joinColumns={ @JoinColumn(name="uid")}, inverseJoinColumns={ @JoinColumn(name = "rid") })
 	private Set<SysRole> roleList;
 	
