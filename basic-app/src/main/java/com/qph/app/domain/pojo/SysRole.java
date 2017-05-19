@@ -20,6 +20,8 @@ public class SysRole implements Serializable{
 	
 	@Column(nullable = false,unique=true)
 	private String name;
+	
+	private String description;
 
 	@ManyToMany(mappedBy="roleList")//由SysUser方来维护关联关系
 	private Set<SysUser> userList;
@@ -46,6 +48,14 @@ public class SysRole implements Serializable{
 
 	public void setUserList(Set<SysUser> userList) {
 		this.userList = userList;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	
